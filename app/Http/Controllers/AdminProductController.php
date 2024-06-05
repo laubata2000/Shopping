@@ -6,10 +6,14 @@ use App\Components\Recusive;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
+use App\Traits\StorageImageTrait;
 
 class AdminProductController extends Controller
 {
     //
+    use StorageImageTrait;
     private $category;
     public function __construct(Category $category)
     {
@@ -50,6 +54,7 @@ class AdminProductController extends Controller
         //     'slug' => str_replace(' ', '-', $request->name),
         // ]);
         // return redirect()->route('menus.index');
-        $path = $request->file('feature_image_path')->store('product');
+        $data = $this->storageTraitUpload($request, 'feature_image_path', 'product');
+        dd($data);
     }
 }
