@@ -45,7 +45,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Chọn loại sản phẩm</label>
-                            <select class="form-control select2_init" name="parent_id">
+                            <select class="form-control select2_init" name="category_id">
                                 <option value="0">Chọn menu cha</option>
                                 <?php echo $htmlOption; ?>
 
@@ -67,7 +67,7 @@
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label>Nhập nội dung</label>
-                            <textarea class="form-control my-editor" rows="3" name="content"></textarea>
+                            <textarea class="form-control my-editor" rows="3" name="contents"></textarea>
                         </div>
                     </div>
                     <div class="col-md-12">
