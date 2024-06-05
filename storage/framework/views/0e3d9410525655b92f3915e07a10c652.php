@@ -1,29 +1,29 @@
-@extends('layouts.admin')
 
-@section('title')
+
+<?php $__env->startSection('title'); ?>
 <title>Thêm mới sản phẩm</title>
-@endsection
+<?php $__env->stopSection(); ?>
 
-@section('css')
-<link href="{{asset('vendor/select2/select2.min.css')}}" rel="stylesheet" />
-<link href="{{asset('admins/product/add/add.css')}}" rel="stylesheet" />
-@endsection
+<?php $__env->startSection('css'); ?>
+<link href="<?php echo e(asset('vendor/select2/select2.min.css')); ?>" rel="stylesheet" />
+<link href="<?php echo e(asset('admins/product/add/add.css')); ?>" rel="stylesheet" />
+<?php $__env->stopSection(); ?>
 
-@section('content')
+<?php $__env->startSection('content'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    @include('partials.content-header', ['name' => 'product', 'key' => 'add'])
+    <?php echo $__env->make('partials.content-header', ['name' => 'product', 'key' => 'add'], \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?>
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <form action="{{ route('product.store') }}" method="post" enctype="multipart/form-data">
+    <form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
 
-                        @csrf
+                        <?php echo csrf_field(); ?>
                         <div class="mb-3">
                             <label>Tên sản phẩm</label>
                             <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="name">
@@ -47,7 +47,8 @@
                             <label>Chọn loại sản phẩm</label>
                             <select class="form-control select2_init" name="parent_id">
                                 <option value="0">Chọn menu cha</option>
-                                {!! $htmlOption !!}
+                                <?php echo $htmlOption; ?>
+
                             </select>
                         </div>
 
@@ -82,11 +83,12 @@
 </div>
 <!-- /.content-wrapper -->
 
-@endsection
-@section('js')
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
 
-<script src="{{asset('vendor/select2/select2.min.js')}}"></script>
+<script src="<?php echo e(asset('vendor/select2/select2.min.js')); ?>"></script>
 <script src="https://cdn.tiny.cloud/1/yu3pggmvgfq1q7r7owvxclndikwjcqfbgqaoqadq7ie8dhix/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
-<script src="{{asset('admins/product/add/add.js')}}"></script>
+<script src="<?php echo e(asset('admins/product/add/add.js')); ?>"></script>
 
-@endsection
+<?php $__env->stopSection(); ?>
+<?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\xampp\htdocs\shopping\resources\views/admin/products/add.blade.php ENDPATH**/ ?>
