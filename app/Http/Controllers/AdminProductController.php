@@ -50,5 +50,6 @@ class AdminProductController extends Controller
         //     'slug' => str_replace(' ', '-', $request->name),
         // ]);
         // return redirect()->route('menus.index');
+        $path = $request->file('feature_image_path')->store('product');
     }
 }
