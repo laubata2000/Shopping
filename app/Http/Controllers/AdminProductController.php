@@ -60,7 +60,7 @@ class AdminProductController extends Controller
         //     'slug' => str_replace(' ', '-', $request->name),
         // ]);
         // return redirect()->route('menus.index');
-
+        dd(auth()->id());
         $dataProductCreate = [
             'name' => $request->name,
             'price' => $request->price,
@@ -79,13 +79,16 @@ class AdminProductController extends Controller
         if ($request->hasFile('image_path')) {
             foreach ($request->image_path as $fileItem) {
                 $dataProductImageDetail = $this->storageTraitUploadMutiple($fileItem, 'product');
-
-                $productImage = $this->productImage->create([
-                    'product_id' => $product->id,
+                $product->images()->create([
                     'image_path' => $dataProductImageDetail['file_path'],
                     'image_name' => $dataProductImageDetail['file_name']
                 ]);
-                dd($productImage);
+                // $productImage = $this->productImage->create([
+                //     'product_id' => $product->id,
+                //     'image_path' => $dataProductImageDetail['file_path'],
+                //     'image_name' => $dataProductImageDetail['file_name']
+                // ]);
+
             }
         };
     }
