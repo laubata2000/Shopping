@@ -55,14 +55,8 @@
                         <div class="mb-3">
                             <label>Nhập tags cho sản phẩm</label>
                             <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
-
                             </select>
                         </div>
-
-
-
-
-
                     </div>
                     <div class="col-md-12">
                         <div class="mb-3">
