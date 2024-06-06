@@ -6,6 +6,8 @@ use App\Components\Recusive;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductImage;
+use App\Models\ProductTag;
+use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -18,12 +20,15 @@ class AdminProductController extends Controller
     private $category;
     private $product;
     private $productImage;
-
-    public function __construct(Category $category, Product $product, ProductImage $productImage)
+    private $productTag;
+    private $tag;
+    public function __construct(Category $category, Product $product, ProductImage $productImage, ProductTag $productTag, Tag $tag)
     {
         $this->category = $category;
         $this->product = $product;
         $this->productImage = $productImage;
+        $this->productTag = $productTag;
+        $this->tag = $tag;
     }
     public function index()
     {
@@ -60,7 +65,7 @@ class AdminProductController extends Controller
         //     'slug' => str_replace(' ', '-', $request->name),
         // ]);
         // return redirect()->route('menus.index');
-        dd(auth()->id());
+
         $dataProductCreate = [
             'name' => $request->name,
             'price' => $request->price,
@@ -91,5 +96,20 @@ class AdminProductController extends Controller
 
             }
         };
+
+        //Insert tags for product
+        foreach ($request->tags as $tagItem) {
+            //Insert to tags
+            $tagInstance = $this->tag->firstOrCreate(['name' => $tagItem]);
+
+            $tagIds[] = $tagInstance->id;
+
+            // $this->productTag::create([
+            //     'product_id' => $product->id,
+            //     'tag_id' => $tagInstance->id
+            // ]);
+
+        }
+        $product->tags()->attach($tagIds);
     }
 }
