@@ -108,11 +108,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'product.store',
             'uses' => 'AdminProductController@store',
         ]);
-        // //router show form edit
-        // Route::get('/edit/{id}', [
-        //     'as' => 'menus.edit',
-        //     'uses' => 'MenuController@edit',
-        // ]);
+        //router show form edit product
+        Route::get('/edit/{id}', [
+            'as' => 'products.edit',
+            'uses' => 'AdminProductController@edit',
+        ]);
         // //fouter update
         // Route::post('/update/{id}', [
         //     'as' => 'menus.update',

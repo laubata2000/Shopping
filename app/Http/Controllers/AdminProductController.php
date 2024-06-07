@@ -115,4 +115,11 @@ class AdminProductController extends Controller
             Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
         }
     }
+
+    public function edit($id)
+    {
+        $htmlOption = $this->getCategory($parentId = '');
+        $product = $this->product->find($id);
+        return view('admin.products.edit', compact('product', 'htmlOption'));
+    }
 }

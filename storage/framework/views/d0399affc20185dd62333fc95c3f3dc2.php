@@ -48,7 +48,7 @@
                                 <td><img class="product_image_150_100" src="<?php echo e($product->feature_image_path); ?>" /></td>
                                 <td><?php echo e($product->category?->name); ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-default">Edit</a>
+                                    <a href="<?php echo e(route('products.edit', ['id'=> $product->id])); ?>" class="btn btn-default">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
