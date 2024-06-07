@@ -4,6 +4,13 @@
 <title>Sản phẩm</title>
 @endsection
 
+@section('css')
+<link rel="stylesheet" href="{{asset('admins/product/index/list.css')}}">
+@endsection
+@section('js')
+@endsection
+
+
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -33,23 +40,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            @foreach ($products as $product)
                             <tr>
-                                <th scope="row">Iphone 15</th>
-                                <td>20.0000</td>
-                                <td><img src="" /></td>
-                                <td>Điện thoại</td>
+                                <td>{{ $product->id }}</td>
+                                <th scope="row">{{ $product->name }}</th>
+                                <td>{{ $product->price }}</td>
+                                <td><img class="product_image_150_100" src="{{$product->feature_image_path}}" /></td>
+                                <td>{{ $product->category?->name }}</td>
                                 <td>
                                     <a href="#" class="btn btn-default">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-
+                            @endforeach
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-12">
-
+                    {{ $products->links() }}
                 </div>
             </div>
             <!-- /.row -->

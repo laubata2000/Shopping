@@ -4,6 +4,13 @@
 <title>Sản phẩm</title>
 <?php $__env->stopSection(); ?>
 
+<?php $__env->startSection('css'); ?>
+<link rel="stylesheet" href="<?php echo e(asset('admins/product/index/list.css')); ?>">
+<?php $__env->stopSection(); ?>
+<?php $__env->startSection('js'); ?>
+<?php $__env->stopSection(); ?>
+
+
 <?php $__env->startSection('content'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -33,22 +40,24 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php $__currentLoopData = $products; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $product): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <th scope="row">Iphone 15</th>
-                                <td>20.0000</td>
-                                <td><img src="" /></td>
-                                <td>Điện thoại</td>
+                                <td><?php echo e($product->id); ?></td>
+                                <th scope="row"><?php echo e($product->name); ?></th>
+                                <td><?php echo e($product->price); ?></td>
+                                <td><img class="product_image_150_100" src="<?php echo e($product->feature_image_path); ?>" /></td>
+                                <td><?php echo e($product->category?->name); ?></td>
                                 <td>
                                     <a href="#" class="btn btn-default">Edit</a>
                                     <a href="#" class="btn btn-danger">Delete</a>
                                 </td>
                             </tr>
-
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-12">
+                    <?php echo e($products->links()); ?>
 
                 </div>
             </div>
