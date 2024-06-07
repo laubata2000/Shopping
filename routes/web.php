@@ -113,11 +113,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'products.edit',
             'uses' => 'AdminProductController@edit',
         ]);
-        // //fouter update
-        // Route::post('/update/{id}', [
-        //     'as' => 'menus.update',
-        //     'uses' => 'MenuController@update',
-        // ]);
+        //fouter update
+        Route::post('/update/{id}', [
+            'as' => 'products.update',
+            'uses' => 'AdminProductController@update',
+        ]);
         // //router delete
         // Route::get('/delete/{id}', [
         //     'as' => 'menus.delete',

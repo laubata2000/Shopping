@@ -14,7 +14,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
+    <form action="<?php echo e(route('products.update', ['id'=> $product->id])); ?>" method="post" enctype="multipart/form-data">
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
@@ -66,7 +66,7 @@
                             <label>Nhập tags cho sản phẩm</label>
                             <select name="tags[]" class="form-control tags_select_choose" multiple="multiple">
                                 <?php $__currentLoopData = $product->tags; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $tagsItem): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                <option value="<?php echo e($tagsItem->id); ?>" selected><?php echo e($tagsItem->name); ?></option>
+                                <option value="<?php echo e($tagsItem->name); ?>" selected><?php echo e($tagsItem->name); ?></option>
                                 <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                             </select>
                         </div>
