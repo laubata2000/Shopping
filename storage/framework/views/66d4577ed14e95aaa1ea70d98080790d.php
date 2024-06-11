@@ -3,7 +3,10 @@
 <?php $__env->startSection('title'); ?>
 <title>Trang chủ</title>
 <?php $__env->stopSection(); ?>
-
+<?php $__env->startSection('js'); ?>
+<script src="<?php echo e(asset('vendor/sweetAlert2/sweetalert2@11.js')); ?>"></script>
+<script src="<?php echo e(asset('admins/product/index/list.js')); ?>"></script>
+<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -36,7 +39,7 @@
                                 <td><?php echo e($category->name); ?></td>
                                 <td>
                                     <a href="<?php echo e(route('categorys.edit', ['id'=> $category->id])); ?> " class="btn btn-default">Edit</a>
-                                    <a href=" <?php echo e(route('categorys.delete', ['id'=> $category->id])); ?> " class="btn btn-danger">Delete</a>
+                                    <a href="#  " data-url=" <?php echo e(route('categorys.delete', ['id'=> $category->id])); ?> " class="btn btn-danger action_delete">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

@@ -6,6 +6,7 @@ use App\Components\MenuRecusive;
 use App\Components\Recusive;
 use App\Models\Menu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class MenuController extends Controller
 {
@@ -69,7 +70,20 @@ class MenuController extends Controller
     //delete menu
     public function delete($id)
     {
-        $this->menu->find($id)->delete();
-        return redirect()->route('menus.index');
+        try {
+            $this->menu->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], status: 200);
+            //code...
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail'
+            ], status: 500);
+        }
     }
 }

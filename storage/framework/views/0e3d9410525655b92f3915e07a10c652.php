@@ -17,7 +17,7 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
-    <div class="col-md-12">
+    <!-- <div class="col-md-12">
         <?php if($errors->any()): ?>
         <div class="alert alert-danger">
             <ul>
@@ -27,7 +27,7 @@
             </ul>
         </div>
         <?php endif; ?>
-    </div>
+    </div> -->
     <form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
         <div class="content">
             <div class="container-fluid">
@@ -37,12 +37,45 @@
                         <?php echo csrf_field(); ?>
                         <div class="mb-3">
                             <label>Tên sản phẩm</label>
-                            <input type="text" class="form-control" placeholder="Nhập tên sản phẩm" name="name">
-
+                            <input value="<?php echo e(old('name')); ?>" type="text" class="form-control <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" placeholder="Nhập tên sản phẩm" name="name">
+                            <?php $__errorArgs = ['name'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="alert alert-danger"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="mb-3">
                             <label>Giá</label>
-                            <input type="text" class="form-control" placeholder="Giá sản phẩm" name="price">
+                            <input value="<?php echo e(old('price')); ?>" type="text" class="form-control <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" placeholder="Giá sản phẩm" name="price">
+                            <?php $__errorArgs = ['price'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="alert alert-danger"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="mb-3">
                             <label>Ảnh đại diện</label>
@@ -56,11 +89,28 @@
                         </div>
                         <div class="mb-3">
                             <label>Chọn loại sản phẩm</label>
-                            <select class="form-control select2_init" name="category_id">
+                            <select class="form-control select2_init <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" name="category_id">
                                 <option value="0">Chọn menu cha</option>
                                 <?php echo $htmlOption; ?>
 
                             </select>
+                            <?php $__errorArgs = ['category_id'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="alert alert-danger"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
 
                         <div class="mb-3">
@@ -72,7 +122,24 @@
                     <div class="col-md-12">
                         <div class="mb-3">
                             <label>Nhập nội dung</label>
-                            <textarea class="form-control my-editor" rows="3" name="contents"></textarea>
+                            <textarea class="form-control my-editor <?php $__errorArgs = ['contents'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>" rows="3" name="contents"><?php echo e(old('contents')); ?></textarea>
+                            <?php $__errorArgs = ['contents'];
+$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
+if ($__bag->has($__errorArgs[0])) :
+if (isset($message)) { $__messageOriginal = $message; }
+$message = $__bag->first($__errorArgs[0]); ?>
+                            <div class="alert alert-danger"><?php echo e($message); ?></div>
+                            <?php unset($message);
+if (isset($__messageOriginal)) { $message = $__messageOriginal; }
+endif;
+unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
                     <div class="col-md-12">
