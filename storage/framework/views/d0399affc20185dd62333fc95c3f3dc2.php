@@ -8,6 +8,8 @@
 <link rel="stylesheet" href="<?php echo e(asset('admins/product/index/list.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo e(asset('admins/product/index/list.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 
@@ -49,7 +51,7 @@
                                 <td><?php echo e($product->category?->name); ?></td>
                                 <td>
                                     <a href="<?php echo e(route('products.edit', ['id'=> $product->id])); ?>" class="btn btn-default">Edit</a>
-                                    <a href="#" class="btn btn-danger">Delete</a>
+                                    <a href="#" data-url="<?php echo e(route('products.delete', ['id'=> $product->id])); ?>" class="btn btn-danger action_delete">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

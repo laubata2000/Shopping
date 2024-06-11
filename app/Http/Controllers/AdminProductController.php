@@ -175,12 +175,31 @@ class AdminProductController extends Controller
                 // ]);
 
             }
-            $product->tags()->attach($tagIds);
+            $product->tags()->sync($tagIds);
             DB::commit();
             return redirect()->route('product.index');
         } catch (\Exception $exception) {
             DB::rollback();
             Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
+        }
+    }
+
+    public function delete($id)
+    {
+        try {
+            $this->product->find($id)->delete();
+            return response()->json([
+                'code' => 200,
+                'message' => 'success'
+            ], status: 200);
+            //code...
+        } catch (\Exception $exception) {
+            //throw $th;
+            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
+            return response()->json([
+                'code' => 500,
+                'message' => 'fail'
+            ], status: 500);
         }
     }
 }

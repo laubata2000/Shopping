@@ -118,10 +118,10 @@ Route::prefix('admin')->group(function () {
             'as' => 'products.update',
             'uses' => 'AdminProductController@update',
         ]);
-        // //router delete
-        // Route::get('/delete/{id}', [
-        //     'as' => 'menus.delete',
-        //     'uses' => 'MenuController@delete',
-        // ]);
+        //router delete
+        Route::get('/delete/{id}', [
+            'as' => 'products.delete',
+            'uses' => 'AdminProductController@delete',
+        ]);
     });
 });
