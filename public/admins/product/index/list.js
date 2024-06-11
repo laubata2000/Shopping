@@ -12,19 +12,18 @@ function actionDelete(event) {
         confirmButtonText: "Yes, delete it!",
     }).then((result) => {
         if (result.isConfirmed) {
-            // Swal.fire({
-            //     title: "Deleted!",
-            //     text: "Your file has been deleted.",
-            //     icon: "success",
-            // });
             $.ajax({
                 type: "GET",
                 url: urlRequest,
                 success: function (data) {
                     if (data.code === 200) {
                         that.parent().parent().remove();
+                        Swal.fire({
+                            title: "Deleted!",
+                            text: "Your file has been deleted.",
+                            icon: "success",
+                        });
                     }
-                    console.log(data);
                 },
                 error: function () {},
             });

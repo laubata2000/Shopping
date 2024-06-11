@@ -8,7 +8,7 @@
 <link rel="stylesheet" href="<?php echo e(asset('admins/product/index/list.css')); ?>">
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="<?php echo e(asset('vendor/sweetAlert2/sweetalert2@11.js')); ?>"></script>
 <script src="<?php echo e(asset('admins/product/index/list.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
