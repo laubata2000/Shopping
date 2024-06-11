@@ -17,6 +17,17 @@
     <!-- /.content-header -->
 
     <!-- Main content -->
+    <div class="col-md-12">
+        <?php if($errors->any()): ?>
+        <div class="alert alert-danger">
+            <ul>
+                <?php $__currentLoopData = $errors->all(); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $error): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                <li><?php echo e($error); ?></li>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+            </ul>
+        </div>
+        <?php endif; ?>
+    </div>
     <form action="<?php echo e(route('product.store')); ?>" method="post" enctype="multipart/form-data">
         <div class="content">
             <div class="container-fluid">
