@@ -10,3 +10,7 @@
 .feature_image_container, .detail_image_container {
     margin-top: 20px;
 }
+
+.alert-danger {
+    margin-top: 10px;
+}

@@ -124,4 +124,40 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminProductController@delete',
         ]);
     });
+
+    //Slider routers
+    Route::prefix('sliders')->group(function () {
+
+        Route::get('/', [
+            'as' => 'slider.index',
+            'uses' => 'AdminSliderController@index',
+        ]);
+
+        Route::get('/create', [
+            'as' => 'slider.create',
+            'uses' => 'AdminSliderController@create',
+        ]);
+
+
+
+        Route::post('/store', [
+            'as' => 'slider.store',
+            'uses' => 'AdminSliderController@store',
+        ]);
+        // //router show form edit product
+        // Route::get('/edit/{id}', [
+        //     'as' => 'products.edit',
+        //     'uses' => 'AdminProductController@edit',
+        // ]);
+        // //fouter update
+        // Route::post('/update/{id}', [
+        //     'as' => 'products.update',
+        //     'uses' => 'AdminProductController@update',
+        // ]);
+        // //router delete
+        // Route::get('/delete/{id}', [
+        //     'as' => 'products.delete',
+        //     'uses' => 'AdminProductController@delete',
+        // ]);
+    });
 });
