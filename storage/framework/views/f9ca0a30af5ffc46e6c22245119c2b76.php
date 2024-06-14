@@ -46,8 +46,8 @@
                                 <td><?php echo e($slider->description); ?></td>
                                 <td><img class="product_image_150_100" src="<?php echo e($slider->image_path); ?>" /></td>
                                 <td>
-                                    <a href="#" class="btn btn-default">Edit</a>
-                                    <a href="#" class="btn btn-danger action_delete">Delete</a>
+                                    <a href="<?php echo e(route('slider.edit', ['id'=> $slider->id])); ?>" class="btn btn-default">Edit</a>
+                                    <a href="#" data-url="<?php echo e(route('slider.delete', ['id'=> $slider->id])); ?>" class="btn btn-danger action_delete">Delete</a>
                                 </td>
                             </tr>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>

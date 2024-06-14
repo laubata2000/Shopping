@@ -144,20 +144,20 @@ Route::prefix('admin')->group(function () {
             'as' => 'slider.store',
             'uses' => 'AdminSliderController@store',
         ]);
-        // //router show form edit product
-        // Route::get('/edit/{id}', [
-        //     'as' => 'products.edit',
-        //     'uses' => 'AdminProductController@edit',
-        // ]);
-        // //fouter update
-        // Route::post('/update/{id}', [
-        //     'as' => 'products.update',
-        //     'uses' => 'AdminProductController@update',
-        // ]);
-        // //router delete
-        // Route::get('/delete/{id}', [
-        //     'as' => 'products.delete',
-        //     'uses' => 'AdminProductController@delete',
-        // ]);
+        //router show form edit slider
+        Route::get('/edit/{id}', [
+            'as' => 'slider.edit',
+            'uses' => 'AdminSliderController@edit',
+        ]);
+        //fouter update
+        Route::post('/update/{id}', [
+            'as' => 'slider.update',
+            'uses' => 'AdminSliderController@update',
+        ]);
+        //router delete
+        Route::get('/delete/{id}', [
+            'as' => 'slider.delete',
+            'uses' => 'AdminSliderController@delete',
+        ]);
     });
 });

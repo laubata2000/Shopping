@@ -46,8 +46,8 @@
                                 <td>{{$slider->description}}</td>
                                 <td><img class="product_image_150_100" src="{{$slider->image_path}}" /></td>
                                 <td>
-                                    <a href="#" class="btn btn-default">Edit</a>
-                                    <a href="#" class="btn btn-danger action_delete">Delete</a>
+                                    <a href="{{ route('slider.edit', ['id'=> $slider->id])}}" class="btn btn-default">Edit</a>
+                                    <a href="#" data-url="{{route('slider.delete', ['id'=> $slider->id])}}" class="btn btn-danger action_delete">Delete</a>
                                 </td>
                             </tr>
                             @endforeach
