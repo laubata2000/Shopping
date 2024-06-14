@@ -160,4 +160,40 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminSliderController@delete',
         ]);
     });
+
+    //Setting routers
+    Route::prefix('settings')->group(function () {
+
+        Route::get('/', [
+            'as' => 'setting.index',
+            'uses' => 'AdminSettingController@index',
+        ]);
+
+        // Route::get('/create', [
+        //     'as' => 'slider.create',
+        //     'uses' => 'AdminSliderController@create',
+        // ]);
+
+
+
+        // Route::post('/store', [
+        //     'as' => 'slider.store',
+        //     'uses' => 'AdminSliderController@store',
+        // ]);
+        // //router show form edit slider
+        // Route::get('/edit/{id}', [
+        //     'as' => 'slider.edit',
+        //     'uses' => 'AdminSliderController@edit',
+        // ]);
+        // //fouter update
+        // Route::post('/update/{id}', [
+        //     'as' => 'slider.update',
+        //     'uses' => 'AdminSliderController@update',
+        // ]);
+        // //router delete
+        // Route::get('/delete/{id}', [
+        //     'as' => 'slider.delete',
+        //     'uses' => 'AdminSliderController@delete',
+        // ]);
+    });
 });
