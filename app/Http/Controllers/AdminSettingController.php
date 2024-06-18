@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SettingAddRequest;
 use App\Models\Setting;
-// use Illuminate\Http\Request;
+use App\Traits\DeleteModelTrait;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 
 class AdminSettingController extends Controller
 {
     //
     //create setting
+    use DeleteModelTrait;
     private $setting;
     public function __construct(Setting $setting)
     {
@@ -26,16 +29,17 @@ class AdminSettingController extends Controller
     //page index category
     public function index()
     {
-        //    $categories = $this->category->latest()->paginate(5);
+        $settings = $this->setting->latest()->paginate(5);
         //    return view('admin.category.index', compact('categories'));
-        return view('admin.settings.index');
+        return view('admin.settings.index', compact('settings'));
     }
     //add category
     public function store(SettingAddRequest $request)
     {
         $this->setting->create([
             'config_key' => $request->config_key,
-            'config_value' => $request->config_value
+            'config_value' => $request->config_value,
+            'type' => $request->type
 
         ]);
         return redirect()->route('setting.index');
@@ -48,41 +52,26 @@ class AdminSettingController extends Controller
     //        $htmlOption = $recusive->categoryRecusive($parentId);
     //        return $htmlOption;
     //    }
-    //    //edit category
-    //    public function edit($id)
-    //    {
-    //        $category = $this->category->find($id);
-    //        $htmlOption = $this->getCategory($category->parent_id);
-    //        return view('admin.category.edit', compact('category', 'htmlOption'));
-    //    }
+    //edit settings
+    public function edit($id)
+    {
 
-    //    //update category
-    //    public function update($id, Request $request)
-    //    {
-    //        $this->category->find($id)->update([
-    //            'name' => $request->name,
-    //            'parent_id' => $request->parent_id,
-    //            'slug' => str_replace(' ', '-', $request->name),
-    //        ]);
-    //        return redirect()->route('categorys.index');
-    //    }
-    //    //delete category
-    //    public function delete($id)
-    //    {
-    //        try {
-    //            $this->category->find($id)->delete();
-    //            return response()->json([
-    //                'code' => 200,
-    //                'message' => 'success'
-    //            ], status: 200);
-    //            //code...
-    //        } catch (\Exception $exception) {
-    //            //throw $th;
-    //            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
-    //            return response()->json([
-    //                'code' => 500,
-    //                'message' => 'fail'
-    //            ], status: 500);
-    //        }
-    //    }
+        $setting = $this->setting->find($id);
+        return view('admin.settings.edit', compact('setting'));
+    }
+
+    //update settings
+    public function update($id, Request $request)
+    {
+        $this->setting->find($id)->update([
+            'config_key' => $request->config_key,
+            'config_value' => $request->config_value,
+        ]);
+        return redirect()->route('setting.index');
+    }
+    //delete settings
+    public function delete($id)
+    {
+        return $this->deleteModelTrait($id, $this->setting);
+    }
 }

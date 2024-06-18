@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use App\Components\MenuRecusive;
 use App\Components\Recusive;
 use App\Models\Menu;
+use App\Traits\DeleteModelTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
 class MenuController extends Controller
 {
     //
-
+    use DeleteModelTrait;
     private $menu;
     public function __construct(Menu $menu)
     {
@@ -70,20 +71,6 @@ class MenuController extends Controller
     //delete menu
     public function delete($id)
     {
-        try {
-            $this->menu->find($id)->delete();
-            return response()->json([
-                'code' => 200,
-                'message' => 'success'
-            ], status: 200);
-            //code...
-        } catch (\Exception $exception) {
-            //throw $th;
-            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
-            return response()->json([
-                'code' => 500,
-                'message' => 'fail'
-            ], status: 500);
-        }
+        return $this->deleteModelTrait($id, $this->menu);
     }
 }

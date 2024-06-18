@@ -8,7 +8,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <script src="<?php echo e(asset('vendor/sweetAlert2/sweetalert2@11.js')); ?>"></script>
-<script src="<?php echo e(asset('admins/product/index/list.js')); ?>"></script>
+<script src="<?php echo e(asset('admins/main.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 <!-- Content Wrapper. Contains page content -->
@@ -45,20 +45,22 @@
                             </tr>
                         </thead>
                         <tbody>
-
+                            <?php $__currentLoopData = $settings; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $setting): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                             <tr>
-                                <th scope="row">1</th>
-                                <td>Config Key</td>
-                                <td>Config Value</td>
+                                <th scope="row"><?php echo e($setting->id); ?></th>
+                                <td><?php echo e($setting->config_key); ?></td>
+                                <td><?php echo e($setting->config_value); ?></td>
                                 <td>
-                                    <a href="#" class="btn btn-default">Edit</a>
-                                    <a href="#" class="btn btn-danger action_delete">Delete</a>
+                                    <a href="<?php echo e(route('setting.edit', ['id'=> $setting->id]). '?type=' . $setting->type); ?>" class="btn btn-default">Edit</a>
+                                    <a href="#" data-url="<?php echo e(route('setting.delete', ['id'=> $setting->id])); ?>" class="btn btn-danger action_delete">Delete</a>
                                 </td>
                             </tr>
+                            <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                         </tbody>
                     </table>
                 </div>
                 <div class="col-md-12">
+                    <?php echo e($settings->links()); ?>
 
                 </div>
             </div>

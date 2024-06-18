@@ -9,7 +9,7 @@
 <?php $__env->stopSection(); ?>
 <?php $__env->startSection('js'); ?>
 <script src="<?php echo e(asset('vendor/sweetAlert2/sweetalert2@11.js')); ?>"></script>
-<script src="<?php echo e(asset('admins/product/index/list.js')); ?>"></script>
+<script src="<?php echo e(asset('admins/main.js')); ?>"></script>
 <?php $__env->stopSection(); ?>
 
 

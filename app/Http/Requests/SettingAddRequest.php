@@ -23,7 +23,7 @@ class SettingAddRequest extends FormRequest
     {
         return [
             //
-            'config_key' => 'required|unique:products|max:255|min:5',
+            'config_key' => 'required|unique:settings|max:255|min:5',
             'config_value' => 'required',
         ];
     }
