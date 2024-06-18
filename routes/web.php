@@ -169,17 +169,17 @@ Route::prefix('admin')->group(function () {
             'uses' => 'AdminSettingController@index',
         ]);
 
-        // Route::get('/create', [
-        //     'as' => 'slider.create',
-        //     'uses' => 'AdminSliderController@create',
-        // ]);
+        Route::get('/create', [
+            'as' => 'setting.create',
+            'uses' => 'AdminSettingController@create',
+        ]);
 
 
 
-        // Route::post('/store', [
-        //     'as' => 'slider.store',
-        //     'uses' => 'AdminSliderController@store',
-        // ]);
+        Route::post('/store', [
+            'as' => 'setting.store',
+            'uses' => 'AdminSettingController@store',
+        ]);
         // //router show form edit slider
         // Route::get('/edit/{id}', [
         //     'as' => 'slider.edit',

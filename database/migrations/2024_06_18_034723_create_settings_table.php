@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('settings', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('config_key');
-            $table->text('config_value');
+            $table->string('config_value');
             $table->timestamps();
         });
     }

@@ -24,7 +24,15 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <a href="{{ Route('slider.create') }}" class="btn btn-success float-right m-2">Add</a>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Add
+                        </button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="{{ Route('setting.create'). '?type=Text' }}">Text</a>
+                            <a class="dropdown-item" href="{{ Route('setting.create'). '?type=Textarea' }}">Textarea</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-12">
 
