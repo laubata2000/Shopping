@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AdminUserRequest;
 use App\Models\Role;
 use App\Models\User;
+use App\Traits\DeleteModelTrait;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class AdminUserController extends Controller
 {
+    use DeleteModelTrait;
     private $user;
     private $role;
     public function __construct(User $user, Role $role)
@@ -26,14 +28,11 @@ class AdminUserController extends Controller
 
     public function create()
     {
-        // return view('menus.add');
-        // $htmlOption = $this->getMenu($parentId = '');
-        // return view('admin.menus.add', compact('htmlOption'));
         $roles = $this->role->all();
         return view('admin.users.add', compact('roles'));
     }
 
-    // //add category
+    // //add user
     public function store(AdminUserRequest $request)
     {
 
@@ -54,35 +53,45 @@ class AdminUserController extends Controller
         }
     }
 
-    // public function getMenu($parentId)
-    // {
-    //     $data = $this->menu->all();;
-    //     $recusive = new MenuRecusive($data);
-    //     $htmlOption = $recusive->menuRecusive($parentId);
-    //     return $htmlOption;
-    // }
-
-    //edit menu
+    //edit user
     public function edit($id)
     {
-        // $menu = $this->menu->find($id);
-        // $htmlOption = $this->getMenu($menu->parent_id);
-        // return view('admin.menus.edit', compact('menu', 'htmlOption'));
+        $user = $this->user->find($id);
+        return view('admin.users.edit', compact('user'));
     }
-    // //update menu
-    // public function update($id, Request $request)
-    // {
-    //     $this->menu->find($id)->update([
-    //         'name' => $request->name,
-    //         'parent_id' => $request->parent_id,
-    //         'slug' => str_replace(' ', '-', $request->name),
-    //     ]);
-    //     return redirect()->route('menus.index');
-    // }
+    //update user
+    public function update($id, Request $request)
+    {
+        try {
+            DB::beginTransaction();
+            $dataUserUpdate = [
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ];
 
-    //delete menu
+            $this->user->find($id)->update($dataUserUpdate);
+            $user = $this->user->find($id);
+
+
+            //Insert role for user
+            foreach ($request->role_id as $roleItem) {
+                //Insert to roles
+                $roleInstance = $this->role->firstOrCreate(['name' => $roleItem]);
+                $roleIds[] = $roleInstance->id;
+            }
+            $user->roles()->sync($roleIds);
+            DB::commit();
+            return redirect()->route('user.index');
+        } catch (\Exception $exception) {
+            DB::rollback();
+            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
+        }
+    }
+
+    //delete user
     public function delete($id)
     {
-        // return $this->deleteModelTrait($id, $this->menu);
+        return $this->deleteModelTrait($id, $this->user);
     }
 }

@@ -220,11 +220,11 @@ Route::prefix('admin')->group(function () {
             'as' => 'user.edit',
             'uses' => 'AdminUserController@edit',
         ]);
-        // //fouter update
-        // Route::post('/update/{id}', [
-        //     'as' => 'setting.update',
-        //     'uses' => 'AdminSettingController@update',
-        // ]);
+        //fouter update
+        Route::post('/update/{id}', [
+            'as' => 'user.update',
+            'uses' => 'AdminUserController@update',
+        ]);
         // //router delete
         Route::get('/delete/{id}', [
             'as' => 'user.delete',
