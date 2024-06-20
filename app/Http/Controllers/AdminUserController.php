@@ -6,6 +6,8 @@ use App\Http\Requests\AdminUserRequest;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 
 class AdminUserController extends Controller
 {
@@ -35,12 +37,21 @@ class AdminUserController extends Controller
     public function store(AdminUserRequest $request)
     {
 
-        $this->user->create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => $request->password,
-        ]);
-        return redirect()->route('user.index');
+        try {
+            DB::beginTransaction();
+            $user = $this->user->create([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => $request->password,
+            ]);
+            $roleIds = $request->role_id;
+            $user->roles()->attach($roleIds);
+            DB::commit();
+            return redirect()->route('user.index');
+        } catch (\Exception $exception) {
+            DB::rollback();
+            Log::error('Message: ' . $exception->getMessage() . 'line: ' . $exception->getLine());
+        }
     }
 
     // public function getMenu($parentId)

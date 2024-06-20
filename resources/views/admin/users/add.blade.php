@@ -51,7 +51,7 @@
                         </div>
                         <div class="mb-3">
                             <label>Chọn vai trò</label>
-                            <select class="form-control select2_init" name="" multiple="multiple">
+                            <select name="role_id[]" class="form-control select2_init" name="" multiple="multiple">
                                 <option value="">Chọn vai trò</option>
                                 @foreach($roles as $role)
                                 <option value="{{ $role->id }}">{{ $role->name }}</option>

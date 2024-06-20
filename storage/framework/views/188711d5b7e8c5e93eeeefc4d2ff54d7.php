@@ -93,7 +93,7 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                         <div class="mb-3">
                             <label>Chọn vai trò</label>
-                            <select class="form-control select2_init" name="" multiple="multiple">
+                            <select name="role_id[]" class="form-control select2_init" name="" multiple="multiple">
                                 <option value="">Chọn vai trò</option>
                                 <?php $__currentLoopData = $roles; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $role): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($role->id); ?>"><?php echo e($role->name); ?></option>
