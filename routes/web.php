@@ -211,10 +211,10 @@ Route::prefix('admin')->group(function () {
 
 
 
-        // Route::post('/store', [
-        //     'as' => 'setting.store',
-        //     'uses' => 'AdminSettingController@store',
-        // ]);
+        Route::post('/store', [
+            'as' => 'user.store',
+            'uses' => 'AdminUserController@store',
+        ]);
         //router show form edit settings
         Route::get('/edit/{id}', [
             'as' => 'user.edit',

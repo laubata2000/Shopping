@@ -2,15 +2,19 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AdminUserRequest;
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 
 class AdminUserController extends Controller
 {
     private $user;
-    public function __construct(User $user)
+    private $role;
+    public function __construct(User $user, Role $role)
     {
         $this->user = $user;
+        $this->role = $role;
     }
     public function index()
     {
@@ -23,18 +27,21 @@ class AdminUserController extends Controller
         // return view('menus.add');
         // $htmlOption = $this->getMenu($parentId = '');
         // return view('admin.menus.add', compact('htmlOption'));
+        $roles = $this->role->all();
+        return view('admin.users.add', compact('roles'));
     }
 
     // //add category
-    // public function store(Request $request)
-    // {
-    //     $this->menu->create([
-    //         'name' => $request->name,
-    //         'parent_id' => $request->parent_id,
-    //         'slug' => str_replace(' ', '-', $request->name),
-    //     ]);
-    //     return redirect()->route('menus.index');
-    // }
+    public function store(AdminUserRequest $request)
+    {
+
+        $this->user->create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => $request->password,
+        ]);
+        return redirect()->route('user.index');
+    }
 
     // public function getMenu($parentId)
     // {
