@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\AdminProductReviewController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -230,5 +231,81 @@ Route::prefix('admin')->group(function () {
             'as' => 'user.delete',
             'uses' => 'AdminUserController@delete',
         ]);
+    });
+
+    //Roles routers
+    Route::prefix('roles')->group(function () {
+
+        Route::get('/', [
+            'as' => 'role.index',
+            'uses' => 'AdminRoleController@index',
+        ]);
+
+        Route::get('/create', [
+            'as' => 'role.create',
+            'uses' => 'AdminRoleController@create',
+        ]);
+        Route::post('/store', [
+            'as' => 'role.store',
+            'uses' => 'AdminRoleController@store',
+        ]);
+        //router show form edit settings
+        Route::get('/edit/{id}', [
+            'as' => 'role.edit',
+            'uses' => 'AdminRoleController@edit',
+        ]);
+        //fouter update
+        Route::post('/update/{id}', [
+            'as' => 'role.update',
+            'uses' => 'AdminRoleController@update',
+        ]);
+        // //router delete
+        Route::get('/delete/{id}', [
+            'as' => 'role.delete',
+            'uses' => 'AdminRoleController@delete',
+        ]);
+    });
+
+    //Orders routers
+    Route::prefix('orders')->group(function () {
+        Route::get('/', [
+            'as' => 'order.index',
+            'uses' => 'AdminOrderController@index',
+        ]);
+        Route::get('/create', [
+            'as' => 'order.create',
+            'uses' => 'AdminOrderController@create',
+        ]);
+
+
+        Route::post('/store', [
+            'as' => 'order.store',
+            'uses' => 'AdminOrderController@store',
+        ]);
+
+        Route::get('/show/{id}', [
+            'as' => 'order.show',
+            'uses' => 'AdminOrderController@show',
+        ]);
+
+        Route::post('/update-status/{id}', [
+            'as' => 'order.updateStatus',
+            'uses' => 'AdminOrderController@updateStatus',
+        ]);
+
+        Route::get('/delete/{id}', [
+            'as' => 'order.delete',
+            'uses' => 'AdminOrderController@delete',
+        ]);
+    });
+
+    // Quản lý Bình luận/Đánh giá sản phẩm
+    Route::prefix('product-reviews')->group(function () {
+        Route::get('/', [AdminProductReviewController::class, 'index'])->name('product-review.index');
+        Route::get('/create', [AdminProductReviewController::class, 'create'])->name('product-review.create');
+        Route::post('/store', [AdminProductReviewController::class, 'store'])->name('product-review.store');
+        Route::get('/show/{id}', [AdminProductReviewController::class, 'show'])->name('product-review.show');
+        Route::post('/update-status/{id}', [AdminProductReviewController::class, 'updateStatus'])->name('product-review.updateStatus');
+        Route::get('/delete/{id}', [AdminProductReviewController::class, 'delete'])->name('product-review.delete');
     });
 });
